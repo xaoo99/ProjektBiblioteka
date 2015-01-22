@@ -10,7 +10,7 @@ package projektbiblioteka;
  *
  * @author student
  */
-public class Gatunek 
+public class EgzemplarzKsiazki 
 {
-    String nazwa;
+    
 }

@@ -10,7 +10,8 @@ package projektbiblioteka;
  *
  * @author student
  */
-public class Gatunek 
+public abstract class Osoba 
 {
-    String nazwa;
+    public String Imie;
+    public String Nazwisko;
 }

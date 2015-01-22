@@ -10,6 +10,7 @@ package projektbiblioteka;
  *
  * @author student
  */
-public class Wydawnictwo {
+public class Wydawnictwo 
+{
     
 }

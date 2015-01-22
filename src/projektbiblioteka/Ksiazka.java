@@ -7,9 +7,10 @@
 package projektbiblioteka;
 
 /**
- *
+ * 
  * @author student
  */
-public class Ksiazka {
+public class Ksiazka 
+{
     
 }

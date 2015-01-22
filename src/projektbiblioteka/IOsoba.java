@@ -7,9 +7,11 @@
 package projektbiblioteka;
 
 /**
- *
- * @author student
+ * Interfejs 
  */
-public interface IOsoba {
-    
+public interface IOsoba 
+{
+    public boolean ZmienDane(String NoweImie, String NoweNazwisko);
+    public boolean ZmienImie(String NoweImie);
+    public boolean ZmienNazwisko(String NoweNazwisko);
 }
