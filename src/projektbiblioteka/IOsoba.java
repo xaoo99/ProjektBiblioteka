@@ -7,7 +7,8 @@
 package projektbiblioteka;
 
 /**
- * Interfejs 
+ * Interfejs wymuszający umożliwienie zmany danych autora w klasach go implemenyujących
+ * @author Mela Paulina, Migas Michal, Zimnicki Piotr
  */
 public interface IOsoba 
 {
