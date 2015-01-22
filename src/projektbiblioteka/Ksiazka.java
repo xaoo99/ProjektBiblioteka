@@ -12,5 +12,5 @@ package projektbiblioteka;
  */
 public class Ksiazka 
 {
-    
+    private String Tytul;
 }

@@ -8,9 +8,15 @@ package projektbiblioteka;
 
 /**
  *
- * @author student
+ * @author Mela Paulina, Migas Michal, Zimnicki Piotr
  */
 public class Gatunek 
 {
-    String nazwa;
+    private String Nazwa;
+    
+    public Gatunek(String Nazwa){this.Nazwa = Nazwa;};
+    public Gatunek(){this("");};
+    
+    public void SetNazwa(String NowaNazwa){this.Nazwa = NowaNazwa;};
+    public String GetNazwa(){return this.Nazwa;};
 }
