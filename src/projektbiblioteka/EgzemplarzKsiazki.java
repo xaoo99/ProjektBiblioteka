@@ -8,7 +8,7 @@ package projektbiblioteka;
 
 /**
  *
- * @author student
+ * @author Mela Paulina, Migas Michal, Zimnicki Piotr
  */
 public class EgzemplarzKsiazki 
 {
