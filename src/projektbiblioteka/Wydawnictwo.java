@@ -8,9 +8,13 @@ package projektbiblioteka;
 
 /**
  *
- * @author student
+ * @author Mela Paulina, Migas Michal, Zimnicki Piotr
  */
 public class Wydawnictwo 
 {
+    private String Nazwa;
+    private String Adres;
     
+    public String GetNazwa(){return this.Nazwa;};
+    public String GetAdres(){return this.Adres;};
 }
