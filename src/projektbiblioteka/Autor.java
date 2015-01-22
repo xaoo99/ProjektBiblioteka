@@ -7,7 +7,7 @@
 package projektbiblioteka;
 
 /**
- *
+ * Klasa opisująca autora książki
  * @author Mela Paulina, Migas Michal, Zimnicki Piotr
  */
 public class Autor extends Osoba implements IOsoba 
@@ -15,13 +15,19 @@ public class Autor extends Osoba implements IOsoba
     public Autor(String imie, String nazwisko){this.Imie = imie; this.Nazwisko = nazwisko;};
     public Autor(String nazwisko){this("",nazwisko);};
     public Autor(){this("","");};
+    /**
+     * Metoda umożliwiająca zmianę danych autora
+     */
     @Override
     public boolean ZmienDane(String NoweImie, String NoweNazwisko){return false;};
-    //Metoda umożliwiająca zmianę danych autora
+    /**
+     * Metoda umożliwiająca zmianę imienia autora
+     */
     @Override
     public boolean ZmienImie(String NoweImie){return false;};
-    //Metoda umożliwiająca zmianę imienia autora
+    /**
+     * Metoda umożliwijąca zmianę nazwiska autora
+     */
     @Override
     public boolean ZmienNazwisko(String NoweNazwisko){return false;};
-    //Metoda umożliwijąca zmianę nazwiska autora
-} // Klasa opisująca autora książki
+}
