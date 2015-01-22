@@ -8,7 +8,7 @@ package projektbiblioteka;
 
 /**
  *
- *  * @author Mela Paulina, Migas Michal, Zimnicki Piotr
+ *  @author Mela Paulina, Migas Michal, Zimnicki Piotr
  */
 public class Pracownik extends Osoba implements IOsoba 
 {
