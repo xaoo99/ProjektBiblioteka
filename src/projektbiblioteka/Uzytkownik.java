@@ -10,7 +10,12 @@ package projektbiblioteka;
  *
  * @author student
  */
-public class Uzytkownik 
+public class Uzytkownik extends Osoba implements IOsoba 
 {
-    
+    @Override
+    public boolean ZmienDane(String NoweImie, String NoweNazwisko){return false;};
+    @Override
+    public boolean ZmienImie(String NoweImie){return false;};
+    @Override
+    public boolean ZmienNazwisko(String NoweNazwisko){return false;};
 }
