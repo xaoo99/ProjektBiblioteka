@@ -17,8 +17,11 @@ public class Autor extends Osoba implements IOsoba
     public Autor(){this("","");};
     @Override
     public boolean ZmienDane(String NoweImie, String NoweNazwisko){return false;};
+    //Metoda umożliwiająca zmianę danych autora
     @Override
     public boolean ZmienImie(String NoweImie){return false;};
+    //Metoda umożliwiająca zmianę imienia autora
     @Override
     public boolean ZmienNazwisko(String NoweNazwisko){return false;};
-}
+    //Metoda umożliwijąca zmianę nazwiska autora
+} // Klasa opisująca autora książki

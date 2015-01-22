@@ -7,11 +7,14 @@
 package projektbiblioteka;
 
 /**
- *
- * @author student
+ * Klasa abstrakcyjna zapewniająca występowanie niżej określonych pól w klasach 
+ * dziedziczących
+ * @author Mela Paulina, Migas Michal, Zimnicki Piotr
  */
 public abstract class Osoba 
 {
-    public String Imie;
-    public String Nazwisko;
+    protected String Imie;
+    protected String Nazwisko;
+    public String GetImie(){return this.Imie;};
+    public String GetNazwisko(){return this.Nazwisko;};
 }
