@@ -8,10 +8,13 @@ package projektbiblioteka;
 
 /**
  *
- * @author student
+ * @author Mela Paulina, Migas Michal, Zimnicki Piotr
  */
 public class Autor extends Osoba implements IOsoba 
 {
+    public Autor(String imie, String nazwisko){this.Imie = imie; this.Nazwisko = nazwisko;};
+    public Autor(String nazwisko){this("",nazwisko);};
+    public Autor(){this("","");};
     @Override
     public boolean ZmienDane(String NoweImie, String NoweNazwisko){return false;};
     @Override
