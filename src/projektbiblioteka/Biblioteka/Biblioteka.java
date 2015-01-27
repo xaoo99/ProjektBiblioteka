@@ -34,6 +34,7 @@ public class Biblioteka extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedSidePanel1 = new projektbiblioteka.Biblioteka.jTabbedSidePanel();
+        jTabbedSidePanel2 = new projektbiblioteka.Biblioteka.jTabbedSidePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Biblioteka");
@@ -43,12 +44,14 @@ public class Biblioteka extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedSidePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(410, Short.MAX_VALUE))
+                .addComponent(jTabbedSidePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedSidePanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedSidePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jTabbedSidePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedSidePanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
 
         pack();
@@ -91,5 +94,6 @@ public class Biblioteka extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private projektbiblioteka.Biblioteka.jTabbedSidePanel jTabbedSidePanel1;
+    private projektbiblioteka.Biblioteka.jTabbedSidePanel jTabbedSidePanel2;
     // End of variables declaration//GEN-END:variables
 }
