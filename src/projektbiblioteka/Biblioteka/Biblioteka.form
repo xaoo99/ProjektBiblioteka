@@ -40,8 +40,14 @@
   </Layout>
   <SubComponents>
     <Component class="projektbiblioteka.Biblioteka.jTabbedSidePanel" name="jTabbedSidePanel1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new projektbiblioteka.Biblioteka.jTabbedSidePanel(this)"/>
+      </AuxValues>
     </Component>
     <Component class="projektbiblioteka.Biblioteka.jTabbedSidePanel" name="jTabbedSidePanel2">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new projektbiblioteka.Biblioteka.jTabbedSidePanel(this)"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

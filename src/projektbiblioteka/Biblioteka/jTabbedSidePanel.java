@@ -20,29 +20,46 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 
 /**
- *
- * @author student
+ * @author Mela Paulina, Migas Michal, Zimnicki Piotr
  */
 public class jTabbedSidePanel extends JTabbedPane
 {
+    private Biblioteka Owner;
+    
     private JPanel jPanelEgzemplarz, jPanelKsiazka, jPanelGatunek, jPanelAutor, jPanelWydawnictwo;
     private JList jListEgzemplarz, jListKsiazka, jListGatunek, jListAutor, jListWydawnictwo;
     
-    Vector egzemplarze, ksiazki, gatunki, autorzy, wydawnictwa;
-    public jTabbedSidePanel()
+    private DefaultListModel egzemplarze, ksiazki, gatunki, autorzy, wydawnictwa;
+    public jTabbedSidePanel(Biblioteka owner)
     {
+        this.Owner = owner;
         CreateTabs();
         FillTabs();
-        RoboczyConnect();
+        if(this.Owner.TryConnect)
+        {
+            try
+            {
+            PullDataFromDB(this.Owner.Con);
+            }
+            catch (java.sql.SQLException e)
+            {
+                JOptionPane.showMessageDialog(new JFrame(), "błąd połączenia!\n" + e.toString(), "Connection error!",
+                    JOptionPane.ERROR_MESSAGE);
+                this.Owner.TryConnect = false;
+            }
+        }
     }
     
     private void CreateTabs()
@@ -69,14 +86,52 @@ public class jTabbedSidePanel extends JTabbedPane
     }
     private void CreateTabE()
     {
+        GridBagConstraints c = new GridBagConstraints();
+        egzemplarze = new DefaultListModel();
+        //Dane tymczasowe
+        egzemplarze.addElement("Egzemplarz 1"); egzemplarze.addElement("Egzemplarz 2"); egzemplarze.addElement("Egzemplarz 3");
+        jListEgzemplarz = new JList(egzemplarze);
         
+        JPanel PanelUp = new JPanel(new GridLayout(1,2)), PanelDown = new JPanel(new GridLayout(1,2)), PanelL = new JPanel(new GridLayout(1,1)), PanelR = new JPanel(new GridLayout(13,1));
+        
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 0; c.gridy = 1; c.weighty = 0.1;
+        jPanelEgzemplarz.add(PanelDown,c);
+        
+        c.weightx = 1; c.gridx = 0; c.gridy = 0; c.weighty = 1;
+        jPanelEgzemplarz.add(PanelUp,c);
+        ArrayList<JPanel> p = new ArrayList<JPanel>();
+        for (int i = 0; i < 13; i++)
+        {
+            p.add(new JPanel(new GridLayout(1,1)));
+            PanelR.add((JPanel)p.get(i));
+        }
+        PanelUp.add(PanelL); PanelUp.add(PanelR);
+        PanelDown.add(new JButton("Pobierz zmiany")); PanelDown.add(new JButton("Zapisz zmiany"));
+        PanelL.add(jListEgzemplarz);
+        JLabel jLabelTytul = new JLabel("Tytuł:");
+        JTextField JTFTytul = new JTextField();
+        JButton JButtonDodaj = new JButton("Dodaj"), JButtonZmien = new JButton("Zmień"), JButtonUsun = new JButton("Usuń");
+        p.get(0).add(jLabelTytul);
+        p.get(1).add(JTFTytul);
+        //p.get(2).add();
+        //p.get(3).add();
+        //p.get(4).add();
+        //p.get(5).add();
+        //p.get(6).add();
+        //p.get(7).add();
+        //p.get(8).add();
+        //p.get(9).add();
+        p.get(10).add(JButtonZmien);
+        p.get(11).add(JButtonDodaj);
+        p.get(12).add(JButtonUsun);
     }
     private void CreateTabK()
     {
         GridBagConstraints c = new GridBagConstraints();
-        ksiazki = new Vector();
+        ksiazki = new DefaultListModel();
         //Dane tymczasowe
-        ksiazki.add("Tytuł 1"); ksiazki.add("Tytuł 2"); ksiazki.add("Tytuł 3");
+        ksiazki.addElement("Tytuł 1"); ksiazki.addElement("Tytuł 2"); ksiazki.addElement("Tytuł 3");
         jListKsiazka = new JList(ksiazki);
         
         JPanel PanelUp = new JPanel(new GridLayout(1,2)), PanelDown = new JPanel(new GridLayout(1,2)), PanelL = new JPanel(new GridLayout(1,1)), PanelR = new JPanel(new GridLayout(13,1));
@@ -116,9 +171,9 @@ public class jTabbedSidePanel extends JTabbedPane
     private void CreateTabG()
     {
         GridBagConstraints c = new GridBagConstraints();
-        gatunki = new Vector();
+        gatunki = new DefaultListModel();
         //Dane tymczasowe
-        gatunki.add("Gatunek 1"); gatunki.add("Gatunek 2"); gatunki.add("Gatunek 3");
+        gatunki.addElement("Gatunek 1"); gatunki.addElement("Gatunek 2"); gatunki.addElement("Gatunek 3");
         jListGatunek = new JList(gatunki);
         
         JPanel PanelUp = new JPanel(new GridLayout(1,2)), PanelDown = new JPanel(new GridLayout(1,2)), PanelL = new JPanel(new GridLayout(1,1)), PanelR = new JPanel(new GridLayout(13,1));
@@ -158,9 +213,9 @@ public class jTabbedSidePanel extends JTabbedPane
     private void CreateTabA()
     {
         GridBagConstraints c = new GridBagConstraints();
-        autorzy = new Vector();
+        autorzy = new DefaultListModel();
         //Dane tymczasowe
-        autorzy.add("Autor 1"); autorzy.add("Autor 2"); autorzy.add("Autor 3");
+        autorzy.addElement("Autor 1"); autorzy.addElement("Autor 2"); autorzy.addElement("Autor 3");
         jListAutor = new JList(autorzy);
         
         JPanel PanelUp = new JPanel(new GridLayout(1,2)), PanelDown = new JPanel(new GridLayout(1,2)), PanelL = new JPanel(new GridLayout(1,1)), PanelR = new JPanel(new GridLayout(13,1));
@@ -200,9 +255,9 @@ public class jTabbedSidePanel extends JTabbedPane
     private void CreateTabW()
     {
         GridBagConstraints c = new GridBagConstraints();
-        wydawnictwa = new Vector();
+        wydawnictwa = new DefaultListModel();
         //Dane tymczasowe
-        wydawnictwa.add("Wydawnictwo 1"); wydawnictwa.add("Wydawnictwo 2"); wydawnictwa.add("Wydawnictwo 3");
+        wydawnictwa.addElement("Wydawnictwo 1"); wydawnictwa.addElement("Wydawnictwo 2"); wydawnictwa.addElement("Wydawnictwo 3");
         jListWydawnictwo = new JList(wydawnictwa);
         
         JPanel PanelUp = new JPanel(new GridLayout(1,2)), PanelDown = new JPanel(new GridLayout(1,2)), PanelL = new JPanel(new GridLayout(1,1)), PanelR = new JPanel(new GridLayout(13,1));
@@ -226,8 +281,8 @@ public class jTabbedSidePanel extends JTabbedPane
         JTextField JTFNazwa = new JTextField(), JTFAdres = new JTextField();
         JButton JButtonDodaj = new JButton("Dodaj"), JButtonZmien = new JButton("Zmień"), JButtonUsun = new JButton("Usuń");
         p.get(0).add(jLabelNazwa);
-        p.get(1).add(jLabelAdres);
-        p.get(2).add(JTFNazwa);
+        p.get(1).add(JTFNazwa);
+        p.get(2).add(jLabelAdres);
         p.get(3).add(JTFAdres);
         //p.get(4).add();
         //p.get(5).add();
@@ -239,25 +294,93 @@ public class jTabbedSidePanel extends JTabbedPane
         p.get(11).add(JButtonDodaj);
         p.get(12).add(JButtonUsun);
     }
+    /**
+     * Metoda wyciągająca dane dot. całej biblioteki z bazy danych
+     * @param con Połączenie z bazą danych
+     * @throws java.sql.SQLException 
+     */
+    public void PullDataFromDB(Connection con) throws java.sql.SQLException
+    {
+        this.PullDataFromDB(con,"GATUNEK_nie_wywalaj_prosze","id_g, nazwa");
+        this.PullDataFromDB(con,"WYDAWNICTWO_nie_wywalaj_prosze","id_w, nazwa, adres");
+        this.PullDataFromDB(con,"KSIAZKA_nie_wywalaj_prosze","id_k, tytul, isbn, id_g, id_a, id_w");
+        this.PullDataFromDB(con,"AUTOR_nie_wywalaj_prosze","id_a, imie, nazwisko");
+        this.PullDataFromDB(con,"EGZEMPLARZ_nie_wywalaj_prosze","id_e, id_k");
+    }
+    /**
+     * Metoda wyciągająca dane z pojedynczej tabeli bazy danych
+     * @param con Połączenie z bazą danych
+     * @param table Tabela, z której wyciągniemy dane
+     * @param kolumny kolumy z tabeli, oddzielone przecinkami
+     * @throws java.sql.SQLException 
+     */
+    public void PullDataFromDB(Connection con, String table, String kolumny) throws java.sql.SQLException, IllegalArgumentException
+    {
+        DefaultListModel listaDoZmiany;
+        JList ListaDoRepainta;
+        if (table == "GATUNEK_nie_wywalaj_prosze")
+        {
+            listaDoZmiany = gatunki;
+            ListaDoRepainta = jListGatunek;
+        }
+        else if (table == "WYDAWNICTWO_nie_wywalaj_prosze")
+        {
+            listaDoZmiany = wydawnictwa;
+            ListaDoRepainta = jListWydawnictwo;
+        }
+        else if (table == "KSIAZKA_nie_wywalaj_prosze")
+        {
+            listaDoZmiany = ksiazki;
+            ListaDoRepainta = jListKsiazka;
+        }
+        else if (table == "AUTOR_nie_wywalaj_prosze")
+        {
+            listaDoZmiany = autorzy;
+            ListaDoRepainta = jListAutor;
+        }
+        else if (table == "EGZEMPLARZ_nie_wywalaj_prosze")
+        {
+            listaDoZmiany = egzemplarze;
+            ListaDoRepainta = jListEgzemplarz;
+        }
+        else
+            throw new java.lang.IllegalArgumentException("Podana tabela nie istnieje!");
+        
+        java.sql.Statement stmt = con.createStatement();
+        String query = "SELECT " + kolumny + " FROM " + table;
+        ResultSet rs = stmt.executeQuery(query);
+        gatunki.removeAllElements();
+        while (rs.next() == true)
+        {
+            listaDoZmiany.addElement(rs.getString("nazwa"));
+            ListaDoRepainta.repaint();
+        }
+    }
     
-    
+    /**
+     * Outdated, to be removed
+     */
     private void RoboczyConnect()
     {
         try
         {
-            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@oracle.wspa.edu.pl:1521:wspa3","username","password");
+            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@oracle.wspa.edu.pl:1521:oracle","wspa3","wspa3");
             java.sql.Statement stmt = con.createStatement();
-            String query = "SELECT nazwa FROM gatunki";
+            String query = "SELECT nazwa FROM GATUNEK_nie_wywalaj_prosze";
             ResultSet rs = stmt.executeQuery(query);
-            jListGatunek.removeAll();
-            while (rs.next())
+            gatunki.removeAllElements();
+            while (rs.next() == true)
             {
-                gatunki.add(rs.getString("nazwa"));
+                gatunki.addElement(rs.getString("nazwa"));
+                jListGatunek.repaint();
             }
         }
         catch(Exception e)
         {
-            gatunki.add("Przewrocilem sie!");
+            JOptionPane.showMessageDialog(new JFrame(), e.toString(), "Connection error",
+                JOptionPane.ERROR_MESSAGE);
+            //gatunki.add("Przewrocilem sie!");
         }
+        //jListGatunek.setModel();
     }
 }

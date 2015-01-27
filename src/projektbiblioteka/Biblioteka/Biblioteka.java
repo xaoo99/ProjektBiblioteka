@@ -6,22 +6,41 @@
 
 package projektbiblioteka.Biblioteka;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
- *
- * @author student
+ * @author Mela Paulina, Migas Michal, Zimnicki Piotr
  */
 public class Biblioteka extends javax.swing.JFrame {
 
     /**
      * Creates new form Biblioteka
      */
-    public Biblioteka() {
-        this.add(new jTabbedSidePanel());
-        JButton button1 = new JButton();
-        this.add(button1);
+    public Connection Con;
+    public boolean TryConnect;
+    public Biblioteka() 
+    {
+        
+        try
+        {
+            this.Connect();
+            TryConnect = true;
+        }
+        catch(java.sql.SQLException e)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), "błąd połączenia!\n" + e.toString(), "Connection error!",
+                JOptionPane.ERROR_MESSAGE);
+            TryConnect = false;
+        }
         initComponents();
+    }
+    private void Connect() throws java.sql.SQLException
+    {
+        Con = DriverManager.getConnection("jdbc:oracle:thin:@oracle.wspa.edu.pl:1521:oracle","wspa3","wspa3");
     }
 
     /**
@@ -33,8 +52,8 @@ public class Biblioteka extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedSidePanel1 = new projektbiblioteka.Biblioteka.jTabbedSidePanel();
-        jTabbedSidePanel2 = new projektbiblioteka.Biblioteka.jTabbedSidePanel();
+        jTabbedSidePanel1 = new projektbiblioteka.Biblioteka.jTabbedSidePanel(this);
+        jTabbedSidePanel2 = new projektbiblioteka.Biblioteka.jTabbedSidePanel(this);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Biblioteka");
