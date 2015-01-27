@@ -68,4 +68,9 @@ public class Data
     {
         return new Data();
     }
+    @Override
+    public String toString()
+    {
+        return "" + this.Dzien + "-" + this.Miesiac + "-" + this.Rok;
+    }
 }
