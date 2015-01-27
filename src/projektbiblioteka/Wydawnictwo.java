@@ -17,4 +17,7 @@ public class Wydawnictwo
     
     public String GetNazwa(){return this.Nazwa;};
     public String GetAdres(){return this.Adres;};
+    
+    public boolean SetNazwa(String NowaNazwa){return false;};
+    public boolean SetAdres(String NowyAdres){return false;};
 }
