@@ -13,6 +13,10 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.List;
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.BoxLayout;
@@ -38,7 +42,7 @@ public class jTabbedSidePanel extends JTabbedPane
     {
         CreateTabs();
         FillTabs();
-        
+        RoboczyConnect();
     }
     
     private void CreateTabs()
@@ -236,4 +240,24 @@ public class jTabbedSidePanel extends JTabbedPane
         p.get(12).add(JButtonUsun);
     }
     
+    
+    private void RoboczyConnect()
+    {
+        try
+        {
+            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@oracle.wspa.edu.pl:1521:wspa3","username","password");
+            java.sql.Statement stmt = con.createStatement();
+            String query = "SELECT nazwa FROM gatunki";
+            ResultSet rs = stmt.executeQuery(query);
+            jListGatunek.removeAll();
+            while (rs.next())
+            {
+                gatunki.add(rs.getString("nazwa"));
+            }
+        }
+        catch(Exception e)
+        {
+            gatunki.add("Przewrocilem sie!");
+        }
+    }
 }
