@@ -26,6 +26,15 @@ public class Uzytkownik extends Osoba implements IOsoba
     };
     
     
+    
+    public String GetAdres(){return this.Adres;};
+    public String GetEmail(){return this.Email;};
+    public Data GetDataUrodzenia(){return this.DataUrodzenia;};
+    public String GetDUString(){return this.DataUrodzenia.toString();};
+    public int GetId(){return this.ID;};
+    
+    public boolean ZmienDane(String NoweImie, String NoweNazwisko, String adres, String email, Data dataUrodzenia){return false;};
+    
     @Override
     public boolean ZmienDane(String NoweImie, String NoweNazwisko){return false;};
     @Override
