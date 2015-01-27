@@ -30,4 +30,10 @@ public class Autor extends Osoba implements IOsoba
      */
     @Override
     public boolean ZmienNazwisko(String NoweNazwisko){return false;};
+   
+    @Override
+    public String toString()
+    {
+        return this.Imie + " " + this.Nazwisko;
+    }
 }

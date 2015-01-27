@@ -20,4 +20,11 @@ public class Wydawnictwo
     
     public boolean SetNazwa(String NowaNazwa){return false;};
     public boolean SetAdres(String NowyAdres){return false;};
+    
+    
+    @Override
+    public String toString()
+    {
+        return this.Nazwa + "/n" + this.Adres;
+    }
 }

@@ -7,7 +7,7 @@
 package projektbiblioteka;
 
 /**
- *
+ * Klasa opisująca gatunek książki.
  * @author Mela Paulina, Migas Michal, Zimnicki Piotr
  */
 public class Gatunek 
@@ -19,4 +19,10 @@ public class Gatunek
     
     public void SetNazwa(String NowaNazwa){this.Nazwa = NowaNazwa;};
     public String GetNazwa(){return this.Nazwa;};
+    
+    @Override
+    public String toString()
+    {
+        return this.Nazwa;
+    }
 }
